@@ -1,0 +1,55 @@
+# application.yml (Base Configuration)
+spring:
+  profiles:
+    active: dev
+  application:
+    name: attendance-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/attendance_service_db
+    username: postgres
+    password: Aba14mah?
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  servlet:
+    multipart:
+      enabled: true
+  main:
+    allow-bean-definition-overriding: true
+# other common properties
+server:
+  port: 8089
+  servlet:
+    context-path: /dss/api/v1/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    root: INFO
+    org.springframework: WARN
+    com.bytmasoft: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+# Secret key
+jwt:
+  secret:
+    key: 8KvVu4Bn2KwBNX1MdnXY6VaRVLekVxurk3aaJxnzdCuZL6AHEL0EnnAOYLZtHWUr
+  access:
+    token:
+      expiration: 1800000 # 30 min in milliseconds for token expiration time
+  refresh:
+    token:
+      expiration: 604800000 # 7 days in milliseconds
